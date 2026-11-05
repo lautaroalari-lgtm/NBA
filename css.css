@@ -1,3 +1,4 @@
+
 :root {
     --nba-blue: #17408B;
     --nba-red: #C9082A;
@@ -6,13 +7,20 @@
     --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--light);
     margin: 0;
     padding: 20px;
     color: var(--dark);
 }
+
+/* ENCABEZADO */
 
 header {
     text-align: center;
@@ -31,10 +39,12 @@ header h1 {
 }
 
 header p {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
     opacity: 0.9;
     font-size: 1.1rem;
 }
+
+/* TÍTULOS DE CONFERENCIAS */
 
 .conference-title {
     font-size: 1.8rem;
@@ -45,8 +55,17 @@ header p {
     letter-spacing: 1px;
 }
 
-.east-title { border-color: var(--nba-blue); color: var(--nba-blue); }
-.west-title { border-color: var(--nba-red); color: var(--nba-red); }
+.east-title {
+    border-color: var(--nba-blue);
+    color: var(--nba-blue);
+}
+
+.west-title {
+    border-color: var(--nba-red);
+    color: var(--nba-red);
+}
+
+/* GRILLA DE EQUIPOS */
 
 .teams-grid {
     display: grid;
@@ -55,19 +74,24 @@ header p {
     margin-top: 20px;
 }
 
+/* TARJETAS */
+
 .team-card {
     background: white;
     border-radius: 14px;
     padding: 20px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.25s ease;
     box-shadow: var(--card-shadow);
+    border: 2px solid transparent;
 }
 
 .team-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--nba-blue);
 }
 
 .team-card img {
@@ -75,6 +99,11 @@ header p {
     height: 100px;
     object-fit: contain;
     margin-bottom: 12px;
+    transition: transform 0.25s ease;
+}
+
+.team-card:hover img {
+    transform: scale(1.08);
 }
 
 .team-name {
@@ -83,19 +112,21 @@ header p {
     color: #333;
 }
 
-/* Ventana Modal */
+/* VENTANA MODAL */
+
 .modal {
     display: none;
     position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 20px;
 }
 
 .modal-content {
@@ -103,29 +134,45 @@ header p {
     padding: 35px;
     border-radius: 20px;
     max-width: 450px;
-    width: 85%;
+    width: 100%;
     position: relative;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes scaleUp {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
+
+/* BOTÓN CERRAR */
 
 .close-btn {
     position: absolute;
-    top: 15px; 
+    top: 15px;
     right: 20px;
     font-size: 2rem;
     cursor: pointer;
     color: #aaa;
     transition: color 0.2s;
+    border: none;
+    background: none;
+    line-height: 1;
 }
 
-.close-btn:hover { color: #000; }
+.close-btn:hover {
+    color: #000;
+}
 
 .modal img {
     width: 130px;
@@ -134,11 +181,13 @@ header p {
     margin-bottom: 20px;
 }
 
-.modal h2 { 
-    margin: 0 0 20px 0; 
-    font-size: 2rem; 
+.modal h2 {
+    margin: 0 0 20px;
+    font-size: 2rem;
     color: #111;
 }
+
+/* TABLA DE INFORMACIÓN */
 
 .info-table {
     width: 100%;
@@ -153,10 +202,86 @@ header p {
     font-size: 1.05rem;
 }
 
-.info-table tr:last-child td { border-bottom: none; }
+.info-table tr:last-child td {
+    border-bottom: none;
+}
 
 .info-table td:first-child {
     font-weight: 600;
     color: #666;
     width: 35%;
 }
+
+/* RESPONSIVE: TABLETS */
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .teams-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 15px;
+    }
+
+    .team-card {
+        padding: 15px;
+    }
+
+    .team-card img {
+        width: 85px;
+        height: 85px;
+    }
+}
+
+/* RESPONSIVE: CELULARES */
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .conference-title {
+        font-size: 1.4rem;
+    }
+
+    .teams-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .team-card img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .team-name {
+        font-size: 0.85rem;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+
+    .modal h2 {
+        font-size: 1.6rem;
+    }
+
+    .info-table td {
+        font-size: 0.9rem;
+        padding: 10px 5px;
+    }
+}
+
