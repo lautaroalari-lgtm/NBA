@@ -1,46 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explorá las 30 franquicias de la NBA, su historia, jugadores y estadísticas.">
-    <title>NBA Teams 2026</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+
+    <meta name="description" content="Explorá las 30 franquicias de la NBA: historia, jugadores, información y estadísticas.">
+
+    <meta name="theme-color" content="#080f1f">
+
+    <title>NBA Teams 2026 | Franquicias NBA</title>
+
+    <!-- Conexión con los estilos -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Conexión con JavaScript -->
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
+
+    <!-- ENCABEZADO -->
     <header class="header">
         <h1>🏀 NBA TEAMS 2026</h1>
         <p>Conocé las 30 franquicias de la mejor liga de básquet del mundo</p>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="container">
-        <section class="teams-section">
-            <h2 class="conference-title east-title">Conferencia Este</h2>
-            <div class="teams-grid" id="eastTeams"></div>
 
-            <h2 class="conference-title west-title">Conferencia Oeste</h2>
-            <div class="teams-grid" id="westTeams"></div>
+        <section class="teams-section">
+
+            <!-- CONFERENCIA ESTE -->
+            <h2 class="conference-title east-title">
+                Conferencia Este
+            </h2>
+
+            <div
+                class="teams-grid"
+                id="eastTeams"
+                aria-label="Equipos de la Conferencia Este">
+            </div>
+
+            <!-- CONFERENCIA OESTE -->
+            <h2 class="conference-title west-title">
+                Conferencia Oeste
+            </h2>
+
+            <div
+                class="teams-grid"
+                id="westTeams"
+                aria-label="Equipos de la Conferencia Oeste">
+            </div>
+
         </section>
+
     </main>
 
-    <!-- Ficha del equipo -->
-    <div class="modal" id="teamModal" aria-hidden="true">
-        <div class="modal-content">
-            <button class="close-btn" id="closeModal" aria-label="Cerrar">&times;</button>
+    <!-- VENTANA DE INFORMACIÓN DE CADA EQUIPO -->
+    <div
+        class="modal"
+        id="teamModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Información del equipo">
 
+        <div class="modal-content">
+
+            <!-- BOTÓN PARA CERRAR -->
+            <button
+                class="close-btn"
+                id="closeModal"
+                type="button"
+                aria-label="Cerrar ventana">
+                &times;
+            </button>
+
+            <!-- INFORMACIÓN GENERADA POR JAVASCRIPT -->
             <div id="teamDetails">
-                <!-- El contenido se genera desde JavaScript -->
             </div>
+
         </div>
+
     </div>
 
+    <!-- PIE DE PÁGINA -->
     <footer>
         <p>NBA Teams 2026 | Proyecto informativo no oficial</p>
     </footer>
+
+    <noscript>
+        <p>Para utilizar esta página necesitás activar JavaScript en tu navegador.</p>
+    </noscript>
+
 </body>
 </html>
-
 
