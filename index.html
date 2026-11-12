@@ -1,98 +1,123 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Explorá las 30 franquicias de la NBA: historia, jugadores, información y estadísticas.">
-
-    <meta name="theme-color" content="#080f1f">
-
-    <title>NBA Teams 2026 | Franquicias NBA</title>
-
-    <!-- Conexión con los estilos -->
-    <link rel="stylesheet" href="./style.css">
-
-    <!-- Conexión con JavaScript -->
-    <script src="./script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080f1f">
+  <meta name="description" content="Explorá, compará y guardá tus franquicias favoritas de la NBA.">
+  <title>NBA Teams 2026</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="header">
-        <h1>🏀 NBA TEAMS 2026</h1>
-        <p>Conocé las 30 franquicias de la mejor liga de básquet del mundo</p>
-    </header>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container">
-
-        <section class="teams-section">
-
-            <!-- CONFERENCIA ESTE -->
-            <h2 class="conference-title east-title">
-                Conferencia Este
-            </h2>
-
-            <div
-                class="teams-grid"
-                id="eastTeams"
-                aria-label="Equipos de la Conferencia Este">
-            </div>
-
-            <!-- CONFERENCIA OESTE -->
-            <h2 class="conference-title west-title">
-                Conferencia Oeste
-            </h2>
-
-            <div
-                class="teams-grid"
-                id="westTeams"
-                aria-label="Equipos de la Conferencia Oeste">
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- VENTANA DE INFORMACIÓN DE CADA EQUIPO -->
-    <div
-        class="modal"
-        id="teamModal"
-        aria-hidden="true"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Información del equipo">
-
-        <div class="modal-content">
-
-            <!-- BOTÓN PARA CERRAR -->
-            <button
-                class="close-btn"
-                id="closeModal"
-                type="button"
-                aria-label="Cerrar ventana">
-                &times;
-            </button>
-
-            <!-- INFORMACIÓN GENERADA POR JAVASCRIPT -->
-            <div id="teamDetails">
-            </div>
-
+  <header class="header">
+    <div class="header-content">
+      <div class="brand">
+        <span class="brand-icon">🏀</span>
+        <div>
+          <h1>NBA TEAMS</h1>
+          <p>THE HOME OF BASKETBALL</p>
         </div>
-
+      </div>
+      <span class="season">TEMPORADA 2026</span>
     </div>
+  </header>
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
-        <p>NBA Teams 2026 | Proyecto informativo no oficial</p>
-    </footer>
+  <main class="container">
 
-    <noscript>
-        <p>Para utilizar esta página necesitás activar JavaScript en tu navegador.</p>
-    </noscript>
+    <section class="hero">
+      <p class="eyebrow">30 FRANQUICIAS · UNA LIGA</p>
+      <h2>Explorá el universo <span>NBA</span></h2>
+      <p>Descubrí equipos, compará leyendas y guardá tus favoritos.</p>
+    </section>
+
+    <section class="toolbar">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Buscar equipo..."
+        aria-label="Buscar equipo"
+      >
+
+      <select id="conferenceFilter" aria-label="Filtrar por conferencia">
+        <option value="Todos">Todas las conferencias</option>
+        <option value="Este">Conferencia Este</option>
+        <option value="Oeste">Conferencia Oeste</option>
+      </select>
+
+      <button id="favoritesFilter" class="secondary-button" type="button">
+        ⭐ Mis favoritos
+      </button>
+    </section>
+
+    <section class="comparison-section" id="comparisonSection">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">HEAD TO HEAD</p>
+          <h2>⚔️ Comparador de equipos</h2>
+        </div>
+        <span class="counter" id="compareCounter">0/2 equipos</span>
+      </div>
+
+      <p class="section-description">
+        Seleccioná dos franquicias desde sus tarjetas para compararlas.
+      </p>
+
+      <div class="comparison-slots" id="comparisonSlots">
+        <div class="empty-slot">1. Elegí el primer equipo</div>
+        <div class="empty-slot">2. Elegí el segundo equipo</div>
+      </div>
+
+      <div class="comparison-actions">
+        <button id="compareButton" class="primary-button" disabled type="button">
+          Comparar equipos
+        </button>
+        <button id="clearComparison" class="secondary-button" type="button">
+          Limpiar selección
+        </button>
+      </div>
+
+      <div id="comparisonResult" class="comparison-result" aria-live="polite"></div>
+    </section>
+
+    <section class="teams-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE LEAGUE</p>
+          <h2>Las franquicias</h2>
+        </div>
+        <span class="counter" id="teamCounter">30 equipos</span>
+      </div>
+
+      <h3 class="conference-title east-title">CONFERENCIA ESTE</h3>
+      <div class="teams-grid" id="eastTeams"></div>
+
+      <h3 class="conference-title west-title">CONFERENCIA OESTE</h3>
+      <div class="teams-grid" id="westTeams"></div>
+
+      <p id="noResults" class="no-results" hidden>
+        No se encontraron equipos.
+      </p>
+    </section>
+
+  </main>
+
+  <div class="modal" id="teamModal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal" type="button" aria-label="Cerrar">
+        &times;
+      </button>
+      <div id="teamDetails"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>NBA TEAMS 2026 · Proyecto informativo no oficial</p>
+  </footer>
 
 </body>
 </html>
+
 
